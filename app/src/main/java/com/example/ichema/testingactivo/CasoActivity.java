@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import com.example.ichema.testingactivo.api.TestAPI;
 import com.example.ichema.testingactivo.application.MyApplication;
@@ -34,6 +35,7 @@ public class CasoActivity extends AppCompatActivity {
     private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager lManager;
+    private Button btnComenzar;
     private List<Prueba> items;
     private Caso casoPrueba;
     private TestAPI testAPI;
@@ -45,7 +47,7 @@ public class CasoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_caso);
         Gson gson = new Gson();
         casoPrueba = gson.fromJson(getIntent().getExtras().getString("caso"), Caso.class);
-
+        btnComenzar = (Button) findViewById(R.id.comenzar);
         // Inicializar Pruebas
         items = new ArrayList();
 
@@ -117,6 +119,26 @@ public class CasoActivity extends AppCompatActivity {
                 System.out.println("gg");
                 Intent casoView = new Intent(getApplicationContext(), PruebaActivity.class);
                 startActivity(casoView);
+            }
+        });
+
+        btnComenzar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Call<ArrayList<Boolean>> call = testAPI.test(casoPrueba.getId());
+                call.enqueue(new Callback<ArrayList<Boolean>>() {
+
+
+                    @Override
+                    public void onResponse(Call<ArrayList<Boolean>> call, Response<ArrayList<Boolean>> response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<Boolean>> call, Throwable t) {
+
+                    }
+                });
             }
         });
     }

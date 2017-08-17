@@ -21,7 +21,7 @@ public interface TestAPI {
     Call<ArrayList<Caso>> get();
 
     @POST("test")
-    Call<ArrayList<Caso>> test();
+    Call<ArrayList<Boolean>> test(@Query("id_caso_prueba") int id_caso_prueba);
 
     @GET("test/all")
     Call<ArrayList<Caso>> testAll();

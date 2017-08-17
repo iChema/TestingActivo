@@ -8,6 +8,7 @@ public class Caso {
     private String nombre;
     private String descripcion;
     private String fecha_ejecucion;
+    private boolean en_ejecucion;
     private String status;
     private List<Prueba> pruebas;
 
