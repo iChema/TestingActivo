@@ -8,20 +8,34 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.ichema.testingactivo.api.TestAPI;
+import com.example.ichema.testingactivo.application.MyApplication;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager lManager;
+    private TestAPI testAPI;
+    private List items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +43,31 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Inicializar Casos
-        List items = new ArrayList();
+        //Instancia de gson utilizada por Retrofit para usarse en otra sección de la app.
+        testAPI = ((MyApplication)getApplication()).getRetrofitInstance().create(TestAPI.class);
+        items = new ArrayList<Caso>();
 
-        items.add(new Caso(R.drawable.uno, "Caso 1", 230));
-        items.add(new Caso(R.drawable.uno, "Caso 2", 456));
-        items.add(new Caso(R.drawable.uno, "Caso 3", 342));
-        items.add(new Caso(R.drawable.uno, "Caso 4", 645));
-        items.add(new Caso(R.drawable.uno, "Caso 5", 459));
+        Call<ArrayList<Caso>> call = testAPI.get();
+        call.enqueue(new Callback<ArrayList<Caso>>() {
+
+            @Override
+            public void onResponse(Call<ArrayList<Caso>> call, Response<ArrayList<Caso>> response) {
+
+                if(response.body() != null) {
+                    for(Caso c : response.body()) {
+                        items.add(c);
+                    }
+                    // Crear un nuevo adaptador
+                    adapter = new CasoAdapter(items, MainActivity.this);
+                    recycler.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Caso>> call, Throwable t) {
+                Log.d("Falló", "FALLO EN LA EJECUCIÓN");
+            }
+        });
 
         // Obtener el Recycler
 
@@ -48,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         recycler.setLayoutManager(lManager);
 
         // Crear un nuevo adaptador
-        adapter = new CasoAdapter(items);
+        adapter = new CasoAdapter(items, MainActivity.this);
         recycler.setAdapter(adapter);
 
         toolbar.setOnClickListener(new View.OnClickListener() {

@@ -15,11 +15,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.sql.SQLOutput;
 import java.util.List;
 
 public class CasoAdapter extends RecyclerView.Adapter<CasoAdapter.CasoViewHolder> {
     private List<Caso> items;
+    private Context context;
 
     public static class CasoViewHolder extends RecyclerView.ViewHolder {
         // Campos respectivos de un item
@@ -33,11 +36,13 @@ public class CasoAdapter extends RecyclerView.Adapter<CasoAdapter.CasoViewHolder
             imagen = (ImageView) v.findViewById(R.id.imagen);
             nombre = (TextView) v.findViewById(R.id.nombre);
             visitas = (TextView) v.findViewById(R.id.visitas);
+
         }
     }
 
-    public CasoAdapter(List<Caso> items) {
+    public CasoAdapter(List<Caso> items, Context context) {
         this.items = items;
+        this.context = context;
     }
 
     @Override
@@ -53,9 +58,22 @@ public class CasoAdapter extends RecyclerView.Adapter<CasoAdapter.CasoViewHolder
     }
 
     @Override
-    public void onBindViewHolder(CasoViewHolder viewHolder, int i) {
+    public void onBindViewHolder(final CasoViewHolder viewHolder, int i) {
         viewHolder.imagen.setImageResource(items.get(i).getImagen());
         viewHolder.nombre.setText(items.get(i).getNombre());
         viewHolder.visitas.setText("Visitas:"+String.valueOf(items.get(i).getVisitas()));
+        /*
+        viewHolder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context, CasoActivity.class);
+                Gson gson = new Gson();
+                i.putExtra("caso", gson.toJson(items.get(viewHolder.getAdapterPosition())));
+                context.startActivity(i);
+
+            }
+        });
+        */
+
     }
 }
