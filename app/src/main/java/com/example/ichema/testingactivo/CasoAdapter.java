@@ -24,7 +24,7 @@ public class CasoAdapter extends RecyclerView.Adapter<CasoAdapter.CasoViewHolder
     private List<Caso> items;
     private Context context;
 
-    public static class CasoViewHolder extends RecyclerView.ViewHolder {
+    public class CasoViewHolder extends RecyclerView.ViewHolder {
         // Campos respectivos de un item
         public View view;
         public ImageView imagen;
@@ -36,6 +36,16 @@ public class CasoAdapter extends RecyclerView.Adapter<CasoAdapter.CasoViewHolder
             imagen = (ImageView) v.findViewById(R.id.imagen);
             nombre = (TextView) v.findViewById(R.id.nombre);
             descripcion = (TextView) v.findViewById(R.id.descripcion);
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(context, CasoActivity.class);
+                    Gson gson = new Gson();
+                    i.putExtra("caso", gson.toJson(items.get(getAdapterPosition())));
+                    context.startActivity(i);
+
+                }
+            });
 
         }
     }
@@ -61,18 +71,5 @@ public class CasoAdapter extends RecyclerView.Adapter<CasoAdapter.CasoViewHolder
     public void onBindViewHolder(final CasoViewHolder viewHolder, int i) {
         viewHolder.nombre.setText(items.get(i).getNombre());
         viewHolder.descripcion.setText(items.get(i).getDescripcion());
-        /*
-        viewHolder.view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(context, CasoActivity.class);
-                Gson gson = new Gson();
-                i.putExtra("caso", gson.toJson(items.get(viewHolder.getAdapterPosition())));
-                context.startActivity(i);
-
-            }
-        });
-        */
-
     }
 }

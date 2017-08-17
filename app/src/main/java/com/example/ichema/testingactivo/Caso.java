@@ -27,4 +27,8 @@ public class Caso {
     public String getFecha_ejecucion () { return fecha_ejecucion; }
 
     public String getStatus () { return status; }
+
+    public int getId() {
+        return id;
+    }
 }

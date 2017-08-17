@@ -1,6 +1,7 @@
 package com.example.ichema.testingactivo.api;
 
 import com.example.ichema.testingactivo.Caso;
+import com.example.ichema.testingactivo.Prueba;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,6 @@ public interface TestAPI {
     Call<ArrayList<Caso>> testAll();
 
     @GET("test/getpruebas")
-    Call<ArrayList<Caso>> getPruebas();
+    Call<ArrayList<Prueba>> getPruebas(@Query("id_caso_prueba") int id_caso_prueba);
 
 }

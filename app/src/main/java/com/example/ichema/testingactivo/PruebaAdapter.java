@@ -1,5 +1,6 @@
 package com.example.ichema.testingactivo;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import java.util.List;
 
 public class PruebaAdapter extends RecyclerView.Adapter<PruebaAdapter.PruebaViewHolder> {
     private List<Prueba> items;
+    private Context context;
 
     public static class PruebaViewHolder extends RecyclerView.ViewHolder {
         // Campos respectivos de un item
@@ -35,8 +37,9 @@ public class PruebaAdapter extends RecyclerView.Adapter<PruebaAdapter.PruebaView
         }
     }
 
-    public PruebaAdapter(List<Prueba> items) {
+    public PruebaAdapter(List<Prueba> items, Context context) {
         this.items = items;
+        this.context = context;
     }
 
     @Override

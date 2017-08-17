@@ -1,6 +1,6 @@
 package com.example.ichema.testingactivo;
 
-class Prueba {
+public class Prueba {
     private int id;
     private String nombre;
     private String esperado;
