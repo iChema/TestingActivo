@@ -63,7 +63,7 @@ public class CasoActivity extends AppCompatActivity {
 
         TextView nombreCaso = (TextView) findViewById(R.id.nombre_caso);
         nombreCaso.setText(casoPrueba.getNombre());
-        actualizarImagen();
+        actualizarVista();
 
         // Inicializar Pruebas
         items = new ArrayList();
@@ -180,7 +180,7 @@ public class CasoActivity extends AppCompatActivity {
         pieChart.invalidate();
     }
 
-    void actualizarImagen() {
+    void actualizarVista() {
         ImageView imageView = (ImageView) findViewById(R.id.estatusImagen);
 
         if(casoPrueba.getFecha_ejecucion() == null){
@@ -233,19 +233,28 @@ public class CasoActivity extends AppCompatActivity {
     }
 
     public void updateStatus() {
-        Call<ArrayList<Caso>> call = testAPI.status(casoPrueba.getId());
-        call.enqueue(new Callback<ArrayList<Caso>>() {
-
+        Call<Caso> call = testAPI.status(casoPrueba.getId());
+        call.enqueue(new Callback<Caso>() {
 
             @Override
-            public void onResponse(Call<ArrayList<Caso>> call, Response<ArrayList<Caso>> response) {
-
+            public void onResponse(Call<Caso> call, Response<Caso> response) {
+                Caso cp = response.body();
+                if (response.body() != null) {
+                    if(cp.getFecha_ejecucion() != null) {
+                        if(cp.isEn_ejecucion()) {
+                            casoPrueba.setEn_ejecucion(true);
+                            actualizarVista();
+                        }
+                        else {
+                            casoPrueba = cp;
+                            actualizarVista();
+                        }
+                    }
+                }
             }
 
             @Override
-            public void onFailure(Call<ArrayList<Caso>> call, Throwable t) {
-
-            }
+            public void onFailure(Call<Caso> call, Throwable t) {}
         });
     }
 

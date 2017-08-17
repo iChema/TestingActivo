@@ -30,6 +30,6 @@ public interface TestAPI {
     Call<ArrayList<Prueba>> getPruebas(@Query("id_caso_prueba") int id_caso_prueba);
 
     @GET("test/status")
-    Call<ArrayList<Caso>> status(@Query("id_caso_prueba") int id_caso_prueba);
+    Call<Caso> status(@Query("id_caso_prueba") int id_caso_prueba);
 
 }
