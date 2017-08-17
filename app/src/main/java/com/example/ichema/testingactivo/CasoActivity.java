@@ -57,15 +57,17 @@ public class CasoActivity extends AppCompatActivity {
         // Crear un nuevo adaptador
         adapter = new PruebaAdapter(items);
         recycler.setAdapter(adapter);
+        recycler.setNestedScrollingEnabled(false);
 
         pieChart = (PieChart) findViewById(R.id.idPieChart);
 
         pieChart.setRotationEnabled(true);
         pieChart.setUsePercentValues(true);
-        pieChart.setHoleRadius(10f);
+        pieChart.setHoleRadius(80f);
         pieChart.setTransparentCircleAlpha(0);
-        pieChart.setCenterText("TestingActivo");
-        pieChart.setCenterTextSize(10);
+        pieChart.setCenterText("HDI");
+        pieChart.setCenterTextSize(50);
+        pieChart.setMinimumHeight(600);
         
         addDataSet();
 
@@ -109,7 +111,7 @@ public class CasoActivity extends AppCompatActivity {
         pieDataSet.setSliceSpace(2);
         pieDataSet.setValueTextSize(10);
         ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.GREEN);
+        colors.add(getResources().getColor(R.color.colorPrimary));
         colors.add(Color.RED);
         colors.add(Color.GRAY);
 
