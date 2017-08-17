@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.ichema.testingactivo.CasoActivity">
 
-    <LinearLayout
-        android:layout_width="344dp"
-        android:layout_height="495dp"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
@@ -20,12 +16,6 @@
             android:weightSum="1"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp">
-
-            <Button
-                android:id="@+id/comenzar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Comenzar" />
 
             <LinearLayout
                 android:layout_width="37dp"
@@ -59,6 +49,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <Button
+                android:id="@+id/comenzar"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:background="@color/colorPrimaryDark"
+                android:text="Comenzar"
+                android:textColor="@android:color/background_light" />
 
             <TextView
                 android:id="@+id/nombre_caso"
@@ -96,5 +96,3 @@
         </LinearLayout>
 
     </LinearLayout>
-
-</android.support.constraint.ConstraintLayout>

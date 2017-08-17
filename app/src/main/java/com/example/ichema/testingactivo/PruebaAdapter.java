@@ -51,7 +51,7 @@ public class PruebaAdapter extends RecyclerView.Adapter<PruebaAdapter.PruebaView
     @Override
     public PruebaViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.caso_card, viewGroup, false);
+                .inflate(R.layout.prueba_card, viewGroup, false);
         return new PruebaViewHolder(v);
     }
 
