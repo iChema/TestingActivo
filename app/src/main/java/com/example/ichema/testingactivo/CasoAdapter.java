@@ -33,14 +33,6 @@ public class CasoAdapter extends RecyclerView.Adapter<CasoAdapter.CasoViewHolder
             imagen = (ImageView) v.findViewById(R.id.imagen);
             nombre = (TextView) v.findViewById(R.id.nombre);
             visitas = (TextView) v.findViewById(R.id.visitas);
-
-            view = v;
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View v) {
-                    // item clicked
-                    System.out.println("GG");
-                }
-            });
         }
     }
 

@@ -1,10 +1,13 @@
 package com.example.ichema.testingactivo;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -19,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CasoActivity extends AppCompatActivity {
-
     PieChart pieChart;
     private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
@@ -45,7 +47,7 @@ public class CasoActivity extends AppCompatActivity {
 
         // Obtener el Recycler
 
-        recycler = (RecyclerView) findViewById(R.id.reciclador);
+        recycler = (RecyclerView) findViewById(R.id.reciclador2);
         recycler.setHasFixedSize(true);
 
         // Usar un administrador para LinearLayout
@@ -76,6 +78,15 @@ public class CasoActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected() {
 
+            }
+        });
+
+        pieChart.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                // item clicked
+                System.out.println("gg");
+                Intent casoView = new Intent(getApplicationContext(), PruebaActivity.class);
+                startActivity(casoView);
             }
         });
     }
