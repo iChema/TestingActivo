@@ -63,16 +63,16 @@
             <TextView
                 android:id="@+id/nombre_caso"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="Pruebas" />
 
             <TextView
                 android:id="@+id/descripcion_caso"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="Descripcion de prueba" />
 
             <TextView
                 android:id="@+id/fecha_eje_caso"

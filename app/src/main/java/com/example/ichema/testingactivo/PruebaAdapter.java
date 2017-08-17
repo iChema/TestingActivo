@@ -19,15 +19,11 @@ public class PruebaAdapter extends RecyclerView.Adapter<PruebaAdapter.PruebaView
     public static class PruebaViewHolder extends RecyclerView.ViewHolder {
         // Campos respectivos de un item
         public View view;
-        public ImageView imagen;
         public TextView nombre;
-        public TextView visitas;
 
         public PruebaViewHolder(View v) {
             super(v);
-            imagen = (ImageView) v.findViewById(R.id.imagen);
             nombre = (TextView) v.findViewById(R.id.nombre);
-            visitas = (TextView) v.findViewById(R.id.visitas);
 
             view = v;
             view.setOnClickListener(new View.OnClickListener() {
@@ -57,8 +53,6 @@ public class PruebaAdapter extends RecyclerView.Adapter<PruebaAdapter.PruebaView
 
     @Override
     public void onBindViewHolder(PruebaViewHolder viewHolder, int i) {
-        viewHolder.imagen.setImageResource(items.get(i).getImagen());
         viewHolder.nombre.setText(items.get(i).getNombre());
-        viewHolder.visitas.setText("Visitas:"+String.valueOf(items.get(i).getVisitas()));
     }
 }
