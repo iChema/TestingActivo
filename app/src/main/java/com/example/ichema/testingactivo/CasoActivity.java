@@ -61,8 +61,9 @@ public class CasoActivity extends AppCompatActivity {
 
         pieChart = (PieChart) findViewById(R.id.idPieChart);
 
+        pieChart.setDescription(null);
         pieChart.setRotationEnabled(true);
-        pieChart.setUsePercentValues(true);
+        pieChart.setUsePercentValues(false);
         pieChart.setHoleRadius(80f);
         pieChart.setTransparentCircleAlpha(0);
         pieChart.setCenterText("HDI");
@@ -107,7 +108,7 @@ public class CasoActivity extends AppCompatActivity {
             xEntrys.add(xData[i]);
         }
 
-        PieDataSet pieDataSet = new PieDataSet(yEntrys, "Resultado de pruebas");
+        PieDataSet pieDataSet = new PieDataSet(yEntrys, "");
         pieDataSet.setSliceSpace(2);
         pieDataSet.setValueTextSize(10);
         ArrayList<Integer> colors = new ArrayList<>();
