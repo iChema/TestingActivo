@@ -29,13 +29,13 @@ public class CasoAdapter extends RecyclerView.Adapter<CasoAdapter.CasoViewHolder
         public View view;
         public ImageView imagen;
         public TextView nombre;
-        public TextView visitas;
+        public TextView descripcion;
 
         public CasoViewHolder(View v) {
             super(v);
             imagen = (ImageView) v.findViewById(R.id.imagen);
             nombre = (TextView) v.findViewById(R.id.nombre);
-            visitas = (TextView) v.findViewById(R.id.visitas);
+            descripcion = (TextView) v.findViewById(R.id.descripcion);
 
         }
     }
@@ -59,9 +59,8 @@ public class CasoAdapter extends RecyclerView.Adapter<CasoAdapter.CasoViewHolder
 
     @Override
     public void onBindViewHolder(final CasoViewHolder viewHolder, int i) {
-        viewHolder.imagen.setImageResource(items.get(i).getImagen());
         viewHolder.nombre.setText(items.get(i).getNombre());
-        viewHolder.visitas.setText("Visitas:"+String.valueOf(items.get(i).getVisitas()));
+        viewHolder.descripcion.setText(items.get(i).getDescripcion());
         /*
         viewHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override
