@@ -1,85 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteX="8dp"
+    tools:layout_editor_absoluteY="8dp">
+
+    <TextView
+        android:id="@+id/nombre_caso"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Nombre Caso Prueba" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="8dp">
+            android:layout_weight="1.01"
+            android:orientation="horizontal"></LinearLayout>
 
-            <LinearLayout
-                android:layout_width="37dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.01"
-                android:orientation="horizontal"></LinearLayout>
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="137dp"
+            android:layout_height="49dp"
+            app:srcCompat="@drawable/uno" />
 
-            <ToggleButton
-                android:id="@+id/status_caso"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Estatus"
-                tools:layout_editor_absoluteX="264dp"
-                tools:layout_editor_absoluteY="8dp" />
+    </LinearLayout>
 
-        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/idPieChart"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"></com.github.mikephil.charting.charts.PieChart>
 
-            <com.github.mikephil.charting.charts.PieChart
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/idPieChart"></com.github.mikephil.charting.charts.PieChart>
+    </LinearLayout>
 
-        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/comenzar"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:text="Comenzar"
+            android:textColor="@android:color/background_light" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/comenzar"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_weight="1"
-                android:layout_margin="10dp"
-                android:background="@color/colorPrimaryDark"
-                android:text="Comenzar"
-                android:textColor="@android:color/background_light" />
-
-            <TextView
-                android:id="@+id/nombre_caso"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:text="Pruebas" />
-
-            <TextView
-                android:id="@+id/descripcion_caso"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Descripcion de prueba" />
-
-            <TextView
-                android:id="@+id/fecha_eje_caso"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/titulo_caso_pruebas"
@@ -88,11 +78,20 @@
                 android:layout_weight="1"
                 android:text="Pruebas" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/reciclador2"
+            <TextView
+                android:id="@+id/fecha_eje_caso"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="fecha de ejecucion de prueba" />
+
         </LinearLayout>
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/reciclador2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
     </LinearLayout>
+
+</LinearLayout>
