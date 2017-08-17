@@ -19,6 +19,15 @@ public class Caso {
         this.status = status;
     }
 
+
+    public boolean isEn_ejecucion() {
+        return en_ejecucion;
+    }
+
+    public void setEn_ejecucion(boolean en_ejecucion) {
+        this.en_ejecucion = en_ejecucion;
+    }
+
     public String getNombre() {
         return nombre;
     }

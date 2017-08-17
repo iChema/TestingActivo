@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ichema.testingactivo.api.TestAPI;
@@ -52,6 +53,7 @@ public class CasoActivity extends AppCompatActivity {
 
         TextView nombreCaso = (TextView) findViewById(R.id.nombre_caso);
         nombreCaso.setText(casoPrueba.getNombre());
+        actualizarImagen();
 
         // Inicializar Pruebas
         items = new ArrayList();
@@ -168,6 +170,19 @@ public class CasoActivity extends AppCompatActivity {
         pieChart.invalidate();
     }
 
+    void actualizarImagen() {
+        ImageView imageView = (ImageView) findViewById(R.id.estatusImagen);
+
+        if(casoPrueba.getFecha_ejecucion() == null){
+            imageView.setImageResource(R.drawable.info);
+        } else if(casoPrueba.getFecha_ejecucion() != null && casoPrueba.isEn_ejecucion() == true){
+            imageView.setImageResource(R.drawable.load);
+        } else if(casoPrueba.getFecha_ejecucion() != null && casoPrueba.isEn_ejecucion() == false && casoPrueba.getStatus() == "fallido"){
+            imageView.setImageResource(R.drawable.cancel);
+        } else if(casoPrueba.getFecha_ejecucion() != null && casoPrueba.isEn_ejecucion() == false && casoPrueba.getStatus() == "pasado") {
+            imageView.setImageResource(R.drawable.checked);
+        }
+    }
 
     public ArrayList<PieEntry> getPieEntries() {
         ArrayList<PieEntry> a = new ArrayList<>();
