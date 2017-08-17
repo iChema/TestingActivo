@@ -2,6 +2,7 @@ package com.example.ichema.testingactivo;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -40,7 +41,13 @@ public class CasoActivity extends AppCompatActivity {
     private List<Prueba> items;
     private Caso casoPrueba;
     private TestAPI testAPI;
+    private Handler mHandler;
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        stopRepeatingTask();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +56,9 @@ public class CasoActivity extends AppCompatActivity {
         Gson gson = new Gson();
         casoPrueba = gson.fromJson(getIntent().getExtras().getString("caso"), Caso.class);
         btnComenzar = (Button) findViewById(R.id.comenzar);
+        mHandler = new Handler();
+        startRepeatingTask();
+
 
         TextView nombreCaso = (TextView) findViewById(R.id.nombre_caso);
         nombreCaso.setText(casoPrueba.getNombre());
@@ -185,4 +195,43 @@ public class CasoActivity extends AppCompatActivity {
         a.add(new PieEntry(fallidas, "Fallidas"));
         return a;
     }
+
+    Runnable mStatusChecker = new Runnable() {
+        @Override
+        public void run() {
+            try {
+                updateStatus(); //this function can change value of mInterval.
+            } finally {
+                // 100% guarantee that this always happens, even if
+                // your update method throws an exception
+                mHandler.postDelayed(mStatusChecker, 10000);
+            }
+        }
+    };
+
+    void startRepeatingTask() {
+        mStatusChecker.run();
+    }
+
+    void stopRepeatingTask() {
+        mHandler.removeCallbacks(mStatusChecker);
+    }
+
+    public void updateStatus() {
+        Call<ArrayList<Caso>> call = testAPI.status(casoPrueba.getId());
+        call.enqueue(new Callback<ArrayList<Caso>>() {
+
+
+            @Override
+            public void onResponse(Call<ArrayList<Caso>> call, Response<ArrayList<Caso>> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Caso>> call, Throwable t) {
+
+            }
+        });
+    }
+
 }
