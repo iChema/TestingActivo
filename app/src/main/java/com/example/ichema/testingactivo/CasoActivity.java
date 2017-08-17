@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.ichema.testingactivo.api.TestAPI;
 import com.example.ichema.testingactivo.application.MyApplication;
@@ -48,6 +49,10 @@ public class CasoActivity extends AppCompatActivity {
         Gson gson = new Gson();
         casoPrueba = gson.fromJson(getIntent().getExtras().getString("caso"), Caso.class);
         btnComenzar = (Button) findViewById(R.id.comenzar);
+
+        TextView nombreCaso = (TextView) findViewById(R.id.nombre_caso);
+        nombreCaso.setText(casoPrueba.getNombre());
+
         // Inicializar Pruebas
         items = new ArrayList();
 
@@ -97,7 +102,7 @@ public class CasoActivity extends AppCompatActivity {
         pieChart.setTransparentCircleAlpha(0);
         pieChart.setCenterText("HDI");
         pieChart.setCenterTextSize(50);
-        pieChart.setMinimumHeight(600);
+        pieChart.setMinimumHeight(350);
         
         addDataSet();
 
